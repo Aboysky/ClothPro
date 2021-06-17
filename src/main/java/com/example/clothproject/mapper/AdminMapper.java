@@ -26,5 +26,6 @@ public interface AdminMapper {
             " </where> " +
             " </script> ")
     public List<Demo> select4(Demo demo);
+    https://www.cnblogs.com/EasonJim/p/7449699.html
 
 }

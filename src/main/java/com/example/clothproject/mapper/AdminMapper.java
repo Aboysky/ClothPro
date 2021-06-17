@@ -16,7 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Mapper
 public interface AdminMapper {
-
-
+    @Select("<script> " +
+            "SELECT * " +
+            "from Demo " +
+            " <where> " +
+            "  1=1" +
+            " <if test=\"name != null\">and name=#{name}</if> " +
+            " <if test=\"email != null\"> and email=#{email}</if> " +
+            " </where> " +
+            " </script> ")
+    public List<Demo> select4(Demo demo);
 
 }

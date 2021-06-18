@@ -1,11 +1,10 @@
 package com.example.clothproject.controller;
 
 import com.example.clothproject.entity.User;
-import com.example.clothproject.mapper.UserMapper;
+import com.example.clothproject.dao.UserMapper;
 import com.example.clothproject.util.ResUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -36,10 +35,6 @@ public class UserController {
         return ResUtil.getSucJsonData(users);
     }
 
-    @PostMapping("/login")
-    public String login(String username,String password) {
-
-    }
 
 
 }

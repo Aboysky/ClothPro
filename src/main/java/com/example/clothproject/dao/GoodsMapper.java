@@ -1,7 +1,8 @@
-package com.example.clothproject.mapper;
+package com.example.clothproject.dao;
 
 import com.example.clothproject.entity.Goods;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -15,5 +16,8 @@ import java.util.List;
 @Mapper
 public interface GoodsMapper {
     @Select("select * from goods")
-    public List<Goods> listGoods();
+    List<Goods> listGoods();
+
+    @Select("select * from goods where name = #{name}")
+    List<Goods> searchGoods(@Param("name") String name);
 }

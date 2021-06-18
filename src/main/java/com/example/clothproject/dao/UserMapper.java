@@ -1,4 +1,4 @@
-package com.example.clothproject.mapper;
+package com.example.clothproject.dao;
 
 import com.example.clothproject.entity.User;
 import org.apache.ibatis.annotations.Insert;

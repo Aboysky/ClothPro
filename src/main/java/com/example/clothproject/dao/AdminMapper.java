@@ -1,10 +1,7 @@
 package com.example.clothproject.dao;
 
 import com.example.clothproject.entity.Admin;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -20,8 +17,8 @@ public interface AdminMapper {
     @Select("select * from admin where username = #{name}")
     Admin login(@Param("name") String username);
 
-    @Insert("insert into admin(username,password) values (#{username},#{password})")
-    int register(@Param("username") String username,@Param("password")String password);
+    @Insert("insert into admin(username,password,auth) values (#{username},#{password},#{auth})")
+    int register(@Param("username") String username,@Param("password") String password,@Param("auth") int auth);
 
     @Select("select * from admin")
     List<Admin> listAdmins();
@@ -50,5 +47,9 @@ public interface AdminMapper {
             "</script>"})
     List<Admin> searchAdmins(@Param("goods") Admin admin);
 
+    @Update("update admin set password = #{admin.password},auth = #{admin.auth},gender = #{admin.gender},age = #{admin.age},tel = #{admin.tel} where username = #{admin.username}")
+    Admin updateAdmin(@Param("admin") Admin admin);
 
+    @Delete("delete from admin where username = #{admin.username}")
+    int deleteAdmin(@Param("admin") Admin admin);
 }

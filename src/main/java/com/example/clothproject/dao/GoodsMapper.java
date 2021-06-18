@@ -1,9 +1,8 @@
 package com.example.clothproject.dao;
 
+import com.example.clothproject.entity.Admin;
 import com.example.clothproject.entity.Goods;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -41,4 +40,10 @@ public interface GoodsMapper {
             "</when>",
             "</script>"})
     List<Goods> searchGoods(@Param("goods") Goods goods);
+
+    @Update("update goods set name = #{goods.name},size = #{goods.size},amount = #{goods.amount},date = #{goods.date},factory = #{goods.factory} where id = #{goods.id}")
+    Goods updateGoods(@Param("goods") Goods goods);
+
+    @Delete("delete from goods where username = #{goods.id}")
+    int deleteGoods(@Param("goods") Goods goods);
 }

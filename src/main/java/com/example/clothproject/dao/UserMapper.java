@@ -1,10 +1,8 @@
 package com.example.clothproject.dao;
 
 import com.example.clothproject.entity.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import com.example.clothproject.entity.User;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -41,6 +39,12 @@ public interface UserMapper {
             "AND tel = #{goods.tel}",
             "</when>",
             "</script>"})
-    @Select("select id,name,age,tel from user where name = #{name}")
     List<User> searchUsers(@Param("goods") User user);
+
+
+    @Update("update user set name = #{user.name},age = #{user.age},tel = #{user.tel} where id = #{user.id} ")
+    User updateUser(@Param("user") User user);
+
+    @Delete("delete from user where id = #{user.id}")
+    int deleteUser(@Param("user") User user);
 }

@@ -16,6 +16,6 @@ import lombok.NoArgsConstructor;
 public class User {
     private String id;
     private String name;
-    private int age;
+    private Integer age;
     private String tel;
 }

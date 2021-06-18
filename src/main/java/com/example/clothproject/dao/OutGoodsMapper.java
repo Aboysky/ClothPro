@@ -1,9 +1,8 @@
 package com.example.clothproject.dao;
 
+import com.example.clothproject.entity.InGoods;
 import com.example.clothproject.entity.OutGoods;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -42,4 +41,11 @@ public interface OutGoodsMapper {
             "</when>",
             "</script>"})
     List<OutGoods> searchOutGoods(@Param("good") OutGoods outGoods);
+
+
+    @Update("update outgoods set adminName = #{outGoods.adminName},goodsName  = #{outGoods.goodsName },size  = #{outGoods.size },amount  = #{outGoods.amount },date = #{outGoods.date},factory = #{outGoods.factory} where adminId = #{outGoods.adminId} and goodsId = #{outGoods.goodsId}")
+    OutGoods updateOutGoods(@Param("outGoods") OutGoods outGoods);
+
+    @Delete("delete from outgoods where adminId = #{outGoods.adminId} and goodsId = #{outGoods.goodsId}")
+    int deleteOutGoods(@Param("outGoods") OutGoods outGoods);
 }

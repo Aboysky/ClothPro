@@ -17,7 +17,7 @@ public class Goods {
     private String id;
     private String name;
     private String size;
-    private int amount;
+    private Integer amount;
     private String data;
     private String factory;
 }

@@ -9,12 +9,16 @@ import lombok.NoArgsConstructor;
  * @Description TODO
  * @Date 2021/6/16 22:48
  * @Created by Huan
- */
+// */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Admin {
     private String username;
     private String password;
-    private int auth;
+    private Integer auth;
+    private String gender;
+    private Integer age;
+    private String tel;
 }
+

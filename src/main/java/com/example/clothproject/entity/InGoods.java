@@ -19,7 +19,7 @@ public class InGoods {
     private String adminName;
     private String goodsName;
     private String size;
-    private int amount;
+    private Integer amount;
     private String date;
     private String factory;
 }

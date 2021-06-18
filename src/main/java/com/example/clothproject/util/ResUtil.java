@@ -3,11 +3,10 @@
  */
 package com.example.clothproject.util;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.SerializerFeature;
+
 import com.example.clothproject.constant.GlobalCons;
 import com.example.clothproject.constant.ResultCode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,10 +26,12 @@ public class ResUtil {
      * @param data
      * @return
      */
-    public static String getSucJsonData(Object data) {
-        return JSON.toJSONStringWithDateFormat(getJson(ResultCode.OK, "success", data), DateUtil.DATETIME_FORMAT_SECOND,
-                SerializerFeature.WriteDateUseDateFormat, SerializerFeature.WriteMapNullValue);
-    }
+//    public static String getSucJsonData(Object data) {
+//        ObjectMapper mapper = new ObjectMapper();
+//
+//        return JSON.toJSONStringWithDateFormat(getJson(ResultCode.OK, "success", data), DateUtil.DATETIME_FORMAT_SECOND,
+//                SerializerFeature.WriteDateUseDateFormat, SerializerFeature.WriteMapNullValue);
+//    }
 
     /**
      * 根据传入的响应code和具体描述信息msg封装返回json字符串
@@ -51,13 +52,13 @@ public class ResUtil {
      * @param data
      * @return "{"code":${code},"data":${data},"msg":${msg}}"
      */
-    public static Object getJson(int code, String msg, Object data) {
-        JSONObject json = new JSONObject();
-        json.put(GlobalCons.CODE, code);
-        json.put(GlobalCons.MSG, msg);
-        json.put(GlobalCons.DATA, data);
-        return json;
-    }
+//    public static Object getJson(int code, String msg, Object data) {
+//        JSONObject json = new JSONObject();
+//        json.put(GlobalCons.CODE, code);
+//        json.put(GlobalCons.MSG, msg);
+//        json.put(GlobalCons.DATA, data);
+//        return json;
+//    }
 
     /**
      * 根据传入的响应code、详细信息对象、描述信息msg封装返回json对象
@@ -91,14 +92,14 @@ public class ResUtil {
      * @param dataFormat
      * @return "{"code":${code},"data":${data},"msg":${msg}}"
      */
-    public static String getJsonStr(int code, String msg, Object data, String dataFormat) {
-        JSONObject json = new JSONObject();
-        json.put(GlobalCons.CODE, code);
-        json.put(GlobalCons.DATA, data);
-        json.put(GlobalCons.MSG, msg);
-        return JSON.toJSONStringWithDateFormat(json, dataFormat,
-                SerializerFeature.WriteDateUseDateFormat, SerializerFeature.WriteMapNullValue);
-    }
+//    public static String getJsonStr(int code, String msg, Object data, String dataFormat) {
+//        JSONObject json = new JSONObject();
+//        json.put(GlobalCons.CODE, code);
+//        json.put(GlobalCons.DATA, data);
+//        json.put(GlobalCons.MSG, msg);
+//        return JSON.toJSONStringWithDateFormat(json, dataFormat,
+//                SerializerFeature.WriteDateUseDateFormat, SerializerFeature.WriteMapNullValue);
+//    }
 
     /**
      * 根据传入的响应code和具体描述信息msg封装返回json对象
@@ -122,10 +123,10 @@ public class ResUtil {
      */
     public static boolean isResRight(String res) {
         try {
-            JSONObject json = JSONObject.parseObject(res);
-            if (json.containsKey(GlobalCons.CODE) && ResultCode.OK == json.getInteger(GlobalCons.CODE)) {
-                return true;
-            }
+//            JSONObject json = JSONObject.parseObject(res);
+//            if (json.containsKey(GlobalCons.CODE) && ResultCode.OK == json.getInteger(GlobalCons.CODE)) {
+//                return true;
+//            }
         } catch (Exception e) {
             log.error("ResUtil parse res error:{}", e.getMessage());
         }
@@ -174,23 +175,23 @@ public class ResUtil {
         return getJsonStr(ResultCode.UNAUTHORIZED, "登录超时，请重新登录");
     }
 
-    public static String getSocketJson(String type, int code, String msg, Object data) {
-        JSONObject result = new JSONObject();
-        result.put(GlobalCons.TYPE, type);
-        result.put(GlobalCons.CODE, code);
-        result.put(GlobalCons.MSG, msg);
-        result.put("payload", data);
-        return result.toJSONString();
-    }
+//    public static String getSocketJson(String type, int code, String msg, Object data) {
+//        JSONObject result = new JSONObject();
+//        result.put(GlobalCons.TYPE, type);
+//        result.put(GlobalCons.CODE, code);
+//        result.put(GlobalCons.MSG, msg);
+//        result.put("payload", data);
+//        return result.toJSONString();
+//    }
 
-    public static String getSocketJson(String type, int code, String msg) {
-        JSONObject result = new JSONObject();
-        result.put(GlobalCons.TYPE, type);
-        result.put(GlobalCons.CODE, code);
-        result.put(GlobalCons.MSG, msg);
-        result.put("payload", new JSONObject());
-        return result.toJSONString();
-    }
+//    public static String getSocketJson(String type, int code, String msg) {
+//        JSONObject result = new JSONObject();
+//        result.put(GlobalCons.TYPE, type);
+//        result.put(GlobalCons.CODE, code);
+//        result.put(GlobalCons.MSG, msg);
+//        result.put("payload", new JSONObject());
+//        return result.toJSONString();
+//    }
 
     public static String getStaticPrefix(HttpServletRequest request) {
         return request.getScheme() + "://" + request.getHeader("x-forwarded-host") + IPTV_STATIC_PREFIX;

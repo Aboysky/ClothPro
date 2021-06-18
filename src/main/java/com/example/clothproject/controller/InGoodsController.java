@@ -6,7 +6,9 @@ import com.example.clothproject.util.ResUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -24,8 +26,8 @@ public class InGoodsController {
     }
 
     @PostMapping("/search")
-    public String searchGoods(String name){
-        List<InGoods> goods = inGoodsMapper.searchInGoods(name);
+    public String searchGoods(@RequestBody InGoods inGoods){
+        List<InGoods> goods = inGoodsMapper.searchInGoods(inGoods);
         return ResUtil.getSucJsonData(goods);
     }
 

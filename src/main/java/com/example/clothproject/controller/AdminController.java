@@ -7,9 +7,11 @@ import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -68,9 +70,8 @@ public class AdminController {
     }
 
     @PostMapping("/goods/search")
-    public String listAdmins(String name) {
-        Admin user = adminMapper.login(name);
-        user.setPassword("");
-        return ResUtil.getSucJsonData(user);
+    public String listAdmins(@RequestBody Admin admin) {
+        List<Admin> admins = adminMapper.searchAdmins(admin);
+        return ResUtil.getSucJsonData(admins);
     }
 }

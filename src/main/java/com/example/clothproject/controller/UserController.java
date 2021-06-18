@@ -6,6 +6,7 @@ import com.example.clothproject.util.ResUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -30,8 +31,8 @@ public class UserController {
     }
 
     @PostMapping("/user/search")
-    public String searchUsers(String name){
-        List<User> users = userMapper.searchUsers(name);
+    public String searchUsers(@RequestBody User user){
+        List<User> users = userMapper.searchUsers(user);
         return ResUtil.getSucJsonData(users);
     }
 

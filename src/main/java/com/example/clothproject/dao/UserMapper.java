@@ -25,6 +25,22 @@ public interface UserMapper {
     @Select("select id,name,age,tel from user")
     List<User> listUsers();
 
+    @Select({"<script>",
+            "SELECT * FROM user",
+            "WHERE 1=1 ",
+            "<when test='goods.id!=null'>",
+            "AND id = #{goods.id}",
+            "</when>",
+            "<when test='goods.name!=null'>",
+            "AND name = #{goods.name}",
+            "</when>",
+            "<when test='goods.age!=null'>",
+            "AND age = #{goods.age}",
+            "</when>",
+            "<when test='goods.tel!=null'>",
+            "AND tel = #{goods.tel}",
+            "</when>",
+            "</script>"})
     @Select("select id,name,age,tel from user where name = #{name}")
-    List<User> searchUsers(@Param("name") String name);
+    List<User> searchUsers(@Param("goods") User user);
 }

@@ -6,7 +6,9 @@ import com.example.clothproject.util.ResUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -30,9 +32,9 @@ public class GoodsController {
     }
 
     @PostMapping("/search")
-    public String searchGoods(String name){
-        List<Goods> goods = goodsMapper.searchGoods(name);
-        return ResUtil.getSucJsonData(goods);
+    public String searchGoods(@RequestBody Goods goods){
+        List<Goods> res = goodsMapper.searchGoods(goods);
+        return ResUtil.getSucJsonData(res);
     }
 
 }

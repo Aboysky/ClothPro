@@ -26,6 +26,29 @@ public interface AdminMapper {
     @Select("select * from admin")
     List<Admin> listAdmins();
 
+    @Select({"<script>",
+            "SELECT * FROM admin",
+            "WHERE 1=1 ",
+            "<when test='goods.username!=null'>",
+            "AND username = #{goods.username}",
+            "</when>",
+            "<when test='goods.password!=null'>",
+            "AND password = #{goods.password}",
+            "</when>",
+            "<when test='goods.auth!=null'>",
+            "AND auth = #{goods.auth}",
+            "</when>",
+            "<when test='goods.gender!=null'>",
+            "AND gender = #{goods.gender}",
+            "</when>",
+            "<when test='goods.age!=null'>",
+            "AND age = #{goods.age}",
+            "</when>",
+            "<when test='goods.tel!=null'>",
+            "AND tel = #{goods.tel}",
+            "</when>",
+            "</script>"})
+    List<Admin> searchAdmins(@Param("goods") Admin admin);
 
 
 }
